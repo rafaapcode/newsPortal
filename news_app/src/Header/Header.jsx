@@ -1,12 +1,14 @@
-import React, { useMemo, useState } from 'react';
+import React, { useContext, useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Input, Button, Dropdown } from '@nextui-org/react';
 import Acronymn from './Acronymn';
+import { newsContext } from '../NewsContext'
 
 export default function Header() {
 
     const [selected, setSelected] = useState(new Set(["Portuguese"]));
     const [input, setInput] = useState('');
+    const [, setNews] = useContext(newsContext);
 
     const selectedValue = useMemo(
         () => Array.from(selected).join(", ").replaceAll("_", " "),
@@ -22,8 +24,11 @@ export default function Header() {
     }
 
     function click() {
-        console.log(input, language);
-
+        fetch(`http://localhost:5000/news?subject=${input}&language=${language}`)
+            .then(res => res.json())
+            .then(data => {
+                setNews(data);
+            })
     }
 
     return (

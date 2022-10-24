@@ -1,12 +1,15 @@
 import React from 'react';
 import Header from './Header/Header';
-import Card from './Cards/Card';
+import Cards from './Cards/Card';
+import { NewsProvider } from './NewsContext';
 
 export default function Main(props) {
     return (
         <div className='w-full h-screen'>
-            <Header></Header>
-            <Card></Card>
+            <NewsProvider>
+                <Header></Header>
+                <Cards></Cards>
+            </NewsProvider>
         </div>
     )
 }
