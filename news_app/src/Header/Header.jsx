@@ -27,7 +27,7 @@ export default function Header() {
     }
 
     return (
-        <motion.div className='bg-slate-400 flex w-3/4 h-3/4 items-center justify-center text-center mt-8 rounded-md shadow-xl'>
+        <motion.div className='bg-slate-400 flex mt-8 mx-auto w-3/4 h-3/4 items-center justify-center text-center rounded-md shadow-xl'>
 
             <motion.div className='w-2/5 ml-5'>
                 <Input
