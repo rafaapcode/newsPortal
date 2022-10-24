@@ -48,16 +48,18 @@ export const CardsLayout = (props) => (
                 </Col>
                 <Col>
                     <Row justify="flex-end">
-                        <Button flat auto rounded color="primary">
-                            <Text
-                                css={{ color: "inherit" }}
-                                size={12}
-                                weight="bold"
-                                transform="uppercase"
-                            >
-                                <a target='blank' href={props.url}>Go to news ...</a>
-                            </Text>
-                        </Button>
+                        <a target='blank' href={props.url}>
+                            <Button flat auto rounded color="primary">
+                                <Text
+                                    css={{ color: "inherit" }}
+                                    size={12}
+                                    weight="bold"
+                                    transform="uppercase"
+                                >
+                                    Go to news ..
+                                </Text>
+                            </Button>
+                        </a>
                     </Row>
                 </Col>
             </Row>
