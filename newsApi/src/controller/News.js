@@ -17,11 +17,11 @@ export async function news(req, res) {
             return res.status(400).json({ message: 'News not found.' })
         }
 
-        const newsfilter = news['articles'].map(({ author, title, utl, urlToImage, publishedAt }) => {
+        const newsfilter = news['articles'].map(({ author, title, url, urlToImage, publishedAt }) => {
             if (!author) {
                 author = 'Unknown';
             }
-            return { author, title, utl, urlToImage, publishedAt };
+            return { author, title, url, urlToImage, publishedAt: publishedAt.slice(0,10) };
         })
 
         res.json(newsfilter);
