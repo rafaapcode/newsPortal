@@ -36,7 +36,6 @@ export default function Header() {
 
     return (
         <motion.div className='flex mt-8 mx-auto w-3/4 h-3/4 flex-col items-center justify-center text-center rounded-md shadow-xl bg-gradient-to-r from-sky-100 to-blue-400'>
-
             <Text
                 h1
                 size={60}
@@ -137,7 +136,6 @@ export default function Header() {
                     <Button onPress={click} auto>Search</Button>
                 </motion.div>
             </motion.div>
-
         </motion.div>
     )
 }
