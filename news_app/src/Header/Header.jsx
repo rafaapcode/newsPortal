@@ -177,9 +177,9 @@ export default function Header() {
                 </motion.div>
             </motion.div>
 
-            <motion.div className={!have ? 'hidden' : 'w-full h-2/5 mx-auto flex text-center justify-evenly flex-wrap'}>
+            <motion.div className={!have ? 'hidden' : 'w-full h-fit mx-auto flex text-center justify-evenly flex-wrap'}>
                 
-                <motion.div className='w-1/5'
+                <motion.div id='inputFilterHeader' className='w-1/5'
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{
@@ -224,7 +224,7 @@ export default function Header() {
                     <Button onPress={filterNews} auto>Filter</Button>
                 </motion.div>
 
-                <motion.div className='w-1/4'
+                <motion.div id='dateFilterHeader' className='w-1/4'
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{
@@ -248,7 +248,7 @@ export default function Header() {
                         color="primary" />
                 </motion.div>
 
-                <motion.div className='h-fit rounded-xl'
+                <motion.div id='dateFilterHeaderBtn' className='h-fit rounded-xl'
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.92 }}
                     initial={{ opacity: 0, scale: 0.7 }}
