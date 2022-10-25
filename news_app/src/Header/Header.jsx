@@ -8,7 +8,11 @@ export default function Header() {
 
     const [selected, setSelected] = useState(new Set(["Portuguese"]));
     const [input, setInput] = useState('');
+    const [filter, setFilter] = useState('');
+    const [filterDate, setDate] = useState('');
     const { news, status } = useContext(newsContext);
+
+    const [have] = status;
 
     const selectedValue = useMemo(
         () => Array.from(selected).join(", ").replaceAll("_", " "),
@@ -21,6 +25,13 @@ export default function Header() {
         const value = event.target.value;
 
         setInput(value);
+        setFilter(value);
+    }
+
+    function getDateValue(event) {
+        const value = event.target.value;
+
+        setDate(value);
     }
 
     function click() {
@@ -34,9 +45,36 @@ export default function Header() {
             })
     }
 
+    function filterNews() {
+        // const [, setNews] = news;
+        // fetch(`http://localhost:5000/news?subject=${input}&language=${language}`)
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         setNews(data);
+        //         setHave(true);
+        //     })
+
+        console.log(filter)
+
+    }
+
+    function filterNewsDate() {
+        // const [, setNews] = news;
+        // fetch(`http://localhost:5000/news?subject=${input}&language=${language}`)
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         setNews(data);
+        //         setHave(true);
+        //     })
+
+        console.log(filterDate)
+
+    }
+
     return (
         <motion.div className='flex mt-8 mx-auto w-3/4 h-3/4 flex-col items-center justify-center text-center rounded-md shadow-xl bg-gradient-to-r from-sky-100 to-blue-400'>
             <Text
+                className='mb-10'
                 h1
                 size={60}
                 css={{
@@ -47,7 +85,7 @@ export default function Header() {
                 Search for a News
             </Text>
 
-            <motion.div className='w-full h-1/2 mx-auto flex mt-8 justify-evenly text-center flex-wrap'>
+            <motion.div className='w-full h-1/5 mx-auto flex justify-evenly text-center flex-wrap'>
                 <motion.div className='w-2/5 ml-5'
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
@@ -136,6 +174,100 @@ export default function Header() {
                     <Button onPress={click} auto>Search</Button>
                 </motion.div>
             </motion.div>
+
+            <motion.div className={!have ? 'hidden' : 'w-full h-2/5 mx-auto flex text-center justify-center flex-wrap'}>
+                <motion.div className='w-1/5 ml-5'
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{
+                        default: {
+                            duration: 0.5,
+                            ease: [0, 0.71, 0.2, 1.01]
+                        },
+                        scale: {
+                            type: "spring",
+                            damping: 5,
+                            stiffness: 100,
+                            restDelta: 0.001
+                        }
+                    }}
+                >
+                    <Input
+                        onChange={getInputValue}
+                        bordered
+                        labelPlaceholder="Filter by Author"
+                        width='100%'
+                        color="primary" />
+                </motion.div>
+
+                <motion.div className='ml-10 h-fit rounded-xl mr-10'
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.92 }}
+                    initial={{ opacity: 0, scale: 0.7 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{
+                        default: {
+                            duration: 0.5,
+                            ease: [0, 0.71, 0.2, 1.01]
+                        },
+                        scale: {
+                            type: "spring",
+                            damping: 5,
+                            stiffness: 100,
+                            restDelta: 0.001
+                        }
+                    }}
+                >
+                    <Button onPress={filterNews} auto>Filter</Button>
+                </motion.div>
+
+                <motion.div className='w-1/5 ml-5'
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{
+                        default: {
+                            duration: 0.5,
+                            ease: [0, 0.71, 0.2, 1.01]
+                        },
+                        scale: {
+                            type: "spring",
+                            damping: 5,
+                            stiffness: 100,
+                            restDelta: 0.001
+                        }
+                    }}
+                >
+                    <Input
+                        onChange={getDateValue}
+                        type={'date'}
+                        bordered
+                        width='100%'
+                        color="primary" />
+                </motion.div>
+
+                <motion.div className='ml-10 h-fit rounded-xl'
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.92 }}
+                    initial={{ opacity: 0, scale: 0.7 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{
+                        default: {
+                            duration: 0.5,
+                            ease: [0, 0.71, 0.2, 1.01]
+                        },
+                        scale: {
+                            type: "spring",
+                            damping: 5,
+                            stiffness: 100,
+                            restDelta: 0.001
+                        }
+                    }}
+                >
+                    <Button onPress={filterNewsDate} auto>Filter by date</Button>
+                </motion.div>
+
+            </motion.div>
+
         </motion.div>
     )
 }
