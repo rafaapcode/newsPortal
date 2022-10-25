@@ -1,4 +1,5 @@
 import dotenv from 'dotenv';
+import Sort from '../Sort.js';
 
 dotenv.config();
 
@@ -21,8 +22,8 @@ export async function news(req, res) {
             if (!author) {
                 author = 'Unknown';
             }
-            return { author, title, url, urlToImage, publishedAt: publishedAt.slice(0,10) };
-        })
+            return { author, title, url, urlToImage, publishedAt: publishedAt.slice(0, 10) };
+        }).sort(Sort);
 
         res.json(newsfilter);
     } catch (error) {
