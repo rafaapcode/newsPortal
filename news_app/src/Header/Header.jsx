@@ -1,9 +1,10 @@
-import React, { useContext, useMemo, useState } from 'react';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Input, Button, Dropdown, Text } from '@nextui-org/react';
 import Acronymn from './Acronymn';
 import { newsContext } from '../NewsContext'
 import './Header.css';
+import { isDisabled } from '@testing-library/user-event/dist/utils';
 
 export default function Header() {
 
@@ -24,8 +25,12 @@ export default function Header() {
 
     function getInputValue(event) {
         const value = event.target.value;
-
+        setFilter(value);
         setInput(value);
+    }
+
+    function getInputFilterValue(event) {
+        const value = event.target.value;
         setFilter(value);
     }
 
@@ -47,29 +52,19 @@ export default function Header() {
     }
 
     function filterNews() {
-        // const [, setNews] = news;
-        // fetch(`http://localhost:5000/news?subject=${input}&language=${language}`)
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         setNews(data);
-        //         setHave(true);
-        //     })
+        const [notice, setNotices] = news;
 
-        console.log(filter)
+        const noticeFiltered = notice.filter(news => news.author.includes(filter));
 
+        setNotices(noticeFiltered);
     }
 
     function filterNewsDate() {
-        // const [, setNews] = news;
-        // fetch(`http://localhost:5000/news?subject=${input}&language=${language}`)
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         setNews(data);
-        //         setHave(true);
-        //     })
+        const [notice, setNotices] = news;
 
-        console.log(filterDate)
+        const noticeFiltered = notice.filter(news => news.publishedAt === filterDate);
 
+        setNotices(noticeFiltered);
     }
 
     return (
@@ -178,7 +173,7 @@ export default function Header() {
             </motion.div>
 
             <motion.div className={!have ? 'hidden' : 'w-full h-fit mx-auto flex text-center justify-evenly flex-wrap'}>
-                
+
                 <motion.div id='inputFilterHeader' className='w-1/5'
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
@@ -196,7 +191,7 @@ export default function Header() {
                     }}
                 >
                     <Input
-                        onChange={getInputValue}
+                        onChange={getInputFilterValue}
                         bordered
                         labelPlaceholder="Filter by Author"
                         width='100%'
