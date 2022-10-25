@@ -20,7 +20,7 @@ export default function Cards(props) {
         >
             {news.message ? (<Error msg={news.message}></Error>) :
                 news.map((noticias, index) => {
-                    return (<motion.div key={index} className='font-sans shadow-md rounded-xl w-2/5 h-2/5'>
+                    return (<motion.div key={index} className='font-sans shadow-md rounded-xl w-2/5 h-fit'>
                         <CardsLayout title={noticias.title} author={noticias.author} date={noticias.publishedAt} url={noticias.url} img={noticias.urlToImage}></CardsLayout>
                     </motion.div>)
                 })

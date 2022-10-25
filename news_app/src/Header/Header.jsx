@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Input, Button, Dropdown, Text } from '@nextui-org/react';
 import Acronymn from './Acronymn';
 import { newsContext } from '../NewsContext'
+import './Header.css';
 
 export default function Header() {
 
@@ -72,8 +73,9 @@ export default function Header() {
     }
 
     return (
-        <motion.div className='flex mt-8 mx-auto w-3/4 h-3/4 flex-col items-center justify-center text-center rounded-md shadow-xl bg-gradient-to-r from-sky-100 to-blue-400'>
+        <motion.div id='headerCard' className='flex mt-8 mx-auto w-3/4 h-3/4 flex-col items-center justify-center text-center rounded-md shadow-xl bg-gradient-to-r from-sky-100 to-blue-400'>
             <Text
+                id='titleHeader'
                 className='mb-10'
                 h1
                 size={60}
@@ -86,7 +88,7 @@ export default function Header() {
             </Text>
 
             <motion.div className='w-full h-1/5 mx-auto flex justify-evenly text-center flex-wrap'>
-                <motion.div className='w-2/5 ml-5'
+                <motion.div id='inputHeaderSubject' className='w-2/5 ml-5'
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{
@@ -153,7 +155,7 @@ export default function Header() {
                     </Dropdown>
                 </motion.div>
 
-                <motion.div className='ml-10 h-fit rounded-xl'
+                <motion.div id='btnHeaderSubject' className='ml-10 h-fit rounded-xl'
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.92 }}
                     initial={{ opacity: 0, scale: 0.7 }}
@@ -175,8 +177,9 @@ export default function Header() {
                 </motion.div>
             </motion.div>
 
-            <motion.div className={!have ? 'hidden' : 'w-full h-2/5 mx-auto flex text-center justify-center flex-wrap'}>
-                <motion.div className='w-1/5 ml-5'
+            <motion.div className={!have ? 'hidden' : 'w-full h-2/5 mx-auto flex text-center justify-evenly flex-wrap'}>
+                
+                <motion.div className='w-1/5'
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{
@@ -200,7 +203,7 @@ export default function Header() {
                         color="primary" />
                 </motion.div>
 
-                <motion.div className='ml-10 h-fit rounded-xl mr-10'
+                <motion.div className='h-fit rounded-xl'
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.92 }}
                     initial={{ opacity: 0, scale: 0.7 }}
@@ -221,7 +224,7 @@ export default function Header() {
                     <Button onPress={filterNews} auto>Filter</Button>
                 </motion.div>
 
-                <motion.div className='w-1/5 ml-5'
+                <motion.div className='w-1/4'
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{
@@ -245,7 +248,7 @@ export default function Header() {
                         color="primary" />
                 </motion.div>
 
-                <motion.div className='ml-10 h-fit rounded-xl'
+                <motion.div className='h-fit rounded-xl'
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.92 }}
                     initial={{ opacity: 0, scale: 0.7 }}
