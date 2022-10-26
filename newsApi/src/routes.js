@@ -1,8 +1,8 @@
 import Router from 'express';
-import { news } from './controller/News';
+import News from './controller/News';
 
 const newRouter = new Router();
 
-newRouter.get('/', news);
+newRouter.get('/', News.getNews);
 
 export default newRouter;

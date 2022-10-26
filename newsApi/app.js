@@ -1,7 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
-import newRouter from './src/routes';
+import newsRouter from './src/routes';
 
 dotenv.config();
 
@@ -20,7 +20,7 @@ class App {
     }
 
     routes() {
-        this.app.use('/news', newRouter);
+        this.app.use('/news', newsRouter);
     }
 }
 
