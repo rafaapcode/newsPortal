@@ -52,19 +52,26 @@ export default function Header() {
     }
 
     function filterNews() {
-        const [notice, setNotices] = news;
+        const [, setNotices] = news;
 
-        const noticeFiltered = notice.filter(news => news.author.includes(filter));
+        fetch(`http://localhost:5000/news?subject=${input}&language=${language}`)
+            .then(res => res.json())
+            .then(data => {
+                const noticeFiltered = data.filter(news => news.author.includes(filter));
+                setNotices(noticeFiltered);
+            })
 
-        setNotices(noticeFiltered);
     }
 
     function filterNewsDate() {
-        const [notice, setNotices] = news;
+        const [, setNotices] = news;
 
-        const noticeFiltered = notice.filter(news => news.publishedAt === filterDate);
-
-        setNotices(noticeFiltered);
+        fetch(`http://localhost:5000/news?subject=${input}&language=${language}`)
+        .then(res => res.json())
+        .then(data => {
+            const noticeFiltered = data.filter(news => news.publishedAt === filterDate);
+            setNotices(noticeFiltered);
+        });
     }
 
     return (
@@ -168,7 +175,7 @@ export default function Header() {
                         }
                     }}
                 >
-                    <Button onPress={click} auto>Search</Button>
+                    {input ? (<Button onPress={click} auto>Search</Button>) : (<Button disabled>Search</Button>)}
                 </motion.div>
             </motion.div>
 
@@ -216,7 +223,7 @@ export default function Header() {
                         }
                     }}
                 >
-                    <Button onPress={filterNews} auto>Filter</Button>
+                    {!filter ? (<Button disabled>Filter</Button>) : (<Button onPress={filterNews} auto>Filter</Button>)}
                 </motion.div>
 
                 <motion.div id='dateFilterHeader' className='w-1/4'
@@ -261,7 +268,8 @@ export default function Header() {
                         }
                     }}
                 >
-                    <Button onPress={filterNewsDate} auto>Filter by date</Button>
+                    {!filterDate ? <Button disabled>Filter by date</Button> : <Button onPress={filterNewsDate} auto>Filter by date</Button>}
+
                 </motion.div>
 
             </motion.div>
