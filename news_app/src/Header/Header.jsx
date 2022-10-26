@@ -1,10 +1,10 @@
-import React, { useContext, useEffect, useMemo, useState } from 'react';
+import React, { useContext, useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Input, Button, Dropdown, Text } from '@nextui-org/react';
 import Acronymn from './Acronymn';
 import { newsContext } from '../NewsContext'
 import './Header.css';
-import { isDisabled } from '@testing-library/user-event/dist/utils';
+import Events from './GetValues';
 
 export default function Header() {
 
@@ -23,55 +23,32 @@ export default function Header() {
 
     const language = Acronymn.get(selectedValue);
 
-    function getInputValue(event) {
-        const value = event.target.value;
-        setFilter(value);
-        setInput(value);
-    }
-
-    function getInputFilterValue(event) {
-        const value = event.target.value;
-        setFilter(value);
-    }
-
-    function getDateValue(event) {
-        const value = event.target.value;
-
-        setDate(value);
-    }
-
     function click() {
         const [, setNews] = news;
         const [, setHave] = status;
-        fetch(`http://localhost:5000/news?subject=${input}&language=${language}`)
-            .then(res => res.json())
-            .then(data => {
-                setNews(data);
-                setHave(true);
-            })
+       
+        Events.setReq(data => {
+            setNews(data);
+            setHave(true);
+        }, input, language);
     }
 
     function filterNews() {
         const [, setNotices] = news;
 
-        fetch(`http://localhost:5000/news?subject=${input}&language=${language}`)
-            .then(res => res.json())
-            .then(data => {
-                const noticeFiltered = data.filter(news => news.author.includes(filter));
-                setNotices(noticeFiltered);
-            })
-
+        Events.setReq(data => {
+            const noticeFiltered = data.filter(news => news.author.toLowerCase().includes(filter.toLowerCase()));
+            setNotices(noticeFiltered);
+        }, input, language);
     }
 
     function filterNewsDate() {
         const [, setNotices] = news;
 
-        fetch(`http://localhost:5000/news?subject=${input}&language=${language}`)
-        .then(res => res.json())
-        .then(data => {
+        Events.setReq(data => {
             const noticeFiltered = data.filter(news => news.publishedAt === filterDate);
             setNotices(noticeFiltered);
-        });
+        }, input, language);
     }
 
     return (
@@ -107,7 +84,7 @@ export default function Header() {
                     }}
                 >
                     <Input
-                        onChange={getInputValue}
+                        onChange={(e) => Events.getValues(e, setFilter, setInput)}
                         bordered
                         labelPlaceholder="Search for a news"
                         width='100%'
@@ -198,7 +175,7 @@ export default function Header() {
                     }}
                 >
                     <Input
-                        onChange={getInputFilterValue}
+                        onChange={(e) => Events.getValues(e, setFilter)}
                         bordered
                         labelPlaceholder="Filter by Author"
                         width='100%'
@@ -243,7 +220,7 @@ export default function Header() {
                     }}
                 >
                     <Input
-                        onChange={getDateValue}
+                        onChange={(e) => Events.getValues(e, setDate)}
                         type={'date'}
                         bordered
                         width='100%'
