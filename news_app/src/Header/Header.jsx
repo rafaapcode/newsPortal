@@ -1,10 +1,10 @@
 import React, { useContext, useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Input, Button, Dropdown, Text } from '@nextui-org/react';
-import Acronymn from './Acronymn';
 import { newsContext } from '../NewsContext'
-import './Header.css';
+import Acronymn from './Acronymn';
 import Events from './GetValues';
+import './Header.css';
 
 export default function Header() {
 
@@ -65,7 +65,6 @@ export default function Header() {
             >
                 Search for a News
             </Text>
-
             <motion.div className='w-full h-1/5 mx-auto flex justify-evenly text-center flex-wrap'>
                 <motion.div id='inputHeaderSubject' className='w-2/5 ml-5'
                     initial={{ opacity: 0, scale: 0.8 }}
