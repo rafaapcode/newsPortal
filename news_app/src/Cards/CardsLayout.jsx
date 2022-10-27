@@ -1,11 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Card, Col, Row, Button, Text } from "@nextui-org/react";
-import { newsContext } from '../NewsContext'
 
 export const CardsLayout = (props) => {
-
-    const { favorite } = useContext(newsContext);
-    const [star, setFavorite] = favorite;
 
     return (
         <Card css={{ w: "100%", h: "400px" }}>
@@ -54,10 +50,7 @@ export const CardsLayout = (props) => {
                     </Col>
                     <Col>
                         <Row justify="flex-end">
-                            <button onClick={() => {
-                                setFavorite([{ url: props.url, title: props.title }, ...star]);
-                                localStorage.setItem('favoritos', JSON.stringify(star));
-                            }} className='my-auto mr-5 hover:cursor-pointer bg-white/30 hover:bg-white/50 p-2 rounded'>
+                            <button className='my-auto mr-5 hover:cursor-pointer bg-white/30 hover:bg-white/50 p-2 rounded'>
                                 Save
                             </button>
                             <a target='blank' href={props.url}>

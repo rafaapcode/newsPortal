@@ -22,13 +22,10 @@ export default function SideBar() {
                 <h1>X</h1>
             </motion.div>
 
-            {JSON.parse(localStorage.getItem('favoritos')).map(fav => (
-                <div className='w-11/12 relative text-center shadow-md rounded-md h-14 bg-blue-100/70'>
-                    <h4 className='uppercase font-bold'>{fav.title.slice(0, 20)} </h4>
-                    <a className='underline decoration-sky-500/50 tracking-widest' href={fav.url}>See news</a>
-                </div>
-            ))}
-
+            <div className='w-11/12 relative text-center shadow-md rounded-md h-14 bg-blue-100/70'>
+                <h4 className='uppercase font-bold'>titulo </h4>
+                <a className='underline decoration-sky-500/50 tracking-widest' href='url'>See news</a>
+            </div>
         </motion.div>
 
     )
