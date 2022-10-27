@@ -5,8 +5,7 @@ import { newsContext } from '../NewsContext';
 export default function SideBar() {
     const { sidebar } = useContext(newsContext);
     const [, setIsOpen] = sidebar;
-
-
+    
     return (
 
         <motion.div
@@ -24,11 +23,13 @@ export default function SideBar() {
                 <h1>X</h1>
             </motion.div>
 
-            <div className='w-11/12 relative text-center shadow-md rounded-md h-14 bg-blue-100/70'>
-                <h4 className='uppercase font-bold'>Nome noticia rafael ... </h4>
-                <a className='underline decoration-sky-500/50 tracking-widest' href="">See news</a>
-                <div className='inline-flex absolute left-1 top-1 hover:bg-sky-300 hover:cursor-pointer rounded-md w-5'><p className='mx-auto font-semibold'>X</p></div>
-            </div>
+            {JSON.parse(localStorage.getItem('favoritos')).map(fav => (
+                <div className='w-11/12 relative text-center shadow-md rounded-md h-14 bg-blue-100/70'>
+                    <h4 className='uppercase font-bold'>{fav.title.slice(0, 20)} </h4>
+                    <a className='underline decoration-sky-500/50 tracking-widest' href={fav.url}>See news</a>
+                </div>
+            ))}
+
         </motion.div>
 
     )
