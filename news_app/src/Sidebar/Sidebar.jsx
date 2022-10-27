@@ -5,9 +5,8 @@ import { newsContext } from '../NewsContext';
 export default function SideBar() {
     const { sidebar } = useContext(newsContext);
     const [, setIsOpen] = sidebar;
-    
-    return (
 
+    return (
         <motion.div
             initial={{ opacity: 0, scaleX: 0.2 }}
             animate={{ opacity: 1, scaleX: 1 }}
