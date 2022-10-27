@@ -13,7 +13,7 @@ export default function SideBar() {
             initial={{ opacity: 0, scaleX: 0.2 }}
             animate={{ opacity: 1, scaleX: 1 }}
             transition={{ duration: 0.5, ease: 'easeInOut' }}
-            className='bg-white/20 flex flex-col items-center gap-y-2 rounded-l-xl shadow-2xl backdrop-blur h-full w-full absolute z-10'
+            className='bg-white/20 flex flex-col overflow-auto items-center gap-y-2 rounded-l-xl shadow-2xl backdrop-blur h-full w-full absolute z-10'
         >
             <motion.div
                 onClick={() => setIsOpen(false)}
@@ -24,6 +24,11 @@ export default function SideBar() {
                 <h1>X</h1>
             </motion.div>
 
+            <div className='w-11/12 relative text-center shadow-md rounded-md h-14 bg-blue-100/70'>
+                <h4 className='uppercase font-bold'>Nome noticia rafael ... </h4>
+                <a className='underline decoration-sky-500/50 tracking-widest' href="">See news</a>
+                <div className='inline-flex absolute left-1 top-1 hover:bg-sky-300 hover:cursor-pointer rounded-md w-5'><p className='mx-auto font-semibold'>X</p></div>
+            </div>
         </motion.div>
 
     )
