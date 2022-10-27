@@ -6,7 +6,8 @@ dotenv.config();
 
 export default class FavoriteNews {
     static async createNews(req, res) {
-        const newFavoriteNews = await prisma.favoriteNews.create({ data: req.body });
+        const { url, title } = req.query;
+        const newFavoriteNews = await prisma.favoriteNews.create({ data: { url, title } });
 
         res.json({ message: 'News saved with success !!' });
     }
@@ -18,9 +19,9 @@ export default class FavoriteNews {
     }
 
     static async deleteNews(req, res) {
-            await prisma.favoriteNews.delete({
-                where: { id: req.params.id }
-            });
+        await prisma.favoriteNews.delete({
+            where: { id: req.params.id }
+        });
 
         res.json({ message: 'Deleted with Success !!' });
     }
