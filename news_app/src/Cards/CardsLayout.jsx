@@ -50,9 +50,6 @@ export const CardsLayout = (props) => {
                     </Col>
                     <Col>
                         <Row justify="flex-end">
-                            <button className='my-auto mr-5 hover:cursor-pointer bg-white/30 hover:bg-white/50 p-2 rounded'>
-                                Save
-                            </button>
                             <a target='blank' href={props.url}>
                                 <Button flat auto rounded color="primary">
                                     <Text

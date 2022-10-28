@@ -38,6 +38,7 @@ export default function Header() {
 
         Events.setReq(data => {
             const noticeFiltered = data.filter(news => news.author.toLowerCase().includes(filter.toLowerCase()));
+            console.log(noticeFiltered);
             setNotices(noticeFiltered);
         }, input, language);
     }
@@ -151,7 +152,7 @@ export default function Header() {
                         }
                     }}
                 >
-                    {input ? (<Button onPress={click} auto>Search</Button>) : (<Button disabled>Search</Button>)}
+                    <Button onPress={click} auto>Search</Button>
                 </motion.div>
             </motion.div>
 
@@ -199,7 +200,7 @@ export default function Header() {
                         }
                     }}
                 >
-                    {!filter ? (<Button disabled>Filter</Button>) : (<Button onPress={filterNews} auto>Filter</Button>)}
+                    <Button onPress={filterNews} auto>Filter</Button>
                 </motion.div>
 
                 <motion.div id='dateFilterHeader' className='w-1/4'
@@ -244,7 +245,7 @@ export default function Header() {
                         }
                     }}
                 >
-                    {!filterDate ? <Button disabled>Filter by date</Button> : <Button onPress={filterNewsDate} auto>Filter by date</Button>}
+                    <Button onPress={filterNewsDate} auto>Filter by date</Button>
 
                 </motion.div>
 
